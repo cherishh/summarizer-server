@@ -75,7 +75,7 @@ async function callChatGPTAPI(content) {
       stream: false,
     }, {
       headers: {
-        'Authorization': 'Bearer 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'
+        'Authorization': 'Bearer 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'
       },
       // proxy: {
       //   protocol: 'http',
@@ -95,6 +95,7 @@ async function callChatGPTAPI(content) {
       throw new Error('No summary generated');
     }
   } catch (error) {
+
     console.error('Error calling ChatGPT API:', error);
     throw error;
   }
