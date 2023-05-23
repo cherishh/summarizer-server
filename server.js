@@ -85,7 +85,7 @@ async function callChatGPTAPI(content) {
     });
 
     console.log(response, 11111);
-    console.log(response.data, 'response');
+    console.log(JSON.stringify(response.data), 'data');
 
     if (response.status === 200 && response.data && response.data.choices && response.data.choices.length > 0) {
       console.log(response.data.choices[0].message, 'msg');
