@@ -91,6 +91,7 @@ async function callChatGPTAPI(content) {
       console.log(response.data.choices[0].message, 'msg');
       return response.data.choices[0].message.content.trim();
     } else {
+      console.log(response, 22222);
       throw new Error('No summary generated');
     }
   } catch (error) {
