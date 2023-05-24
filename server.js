@@ -35,7 +35,7 @@ async function callChatGPTAPI(content) {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`
+        'Authorization': `Bearer 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`
       },
       method: 'POST',
       body: JSON.stringify({
@@ -86,7 +86,7 @@ async function callChatGPTAPI(content) {
       throw response;
     }
   } catch (error) {
-
+    console.log(error.body);
     console.error('Error calling ChatGPT API:', error);
     throw error;
   }
