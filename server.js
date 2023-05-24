@@ -75,7 +75,7 @@ async function callChatGPTAPI(content) {
       stream: false,
     }, {
       headers: {
-        'Authorization': 'Bearer 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'
+        'Authorization': 'Bearer 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'
       }
     });
 
