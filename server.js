@@ -76,11 +76,6 @@ async function callChatGPTAPI(content) {
     }, {
       headers: {
         'Authorization': 'Bearer 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'
-      },
-      proxy: {
-        protocol: 'https',
-        host: '127.0.0.1',
-        port: 1087
       }
     });
 
