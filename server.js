@@ -87,10 +87,10 @@ async function callChatGPTAPI(content) {
     }
   } catch (error) {
     const chunks = [];
-    response.body.on('data', (chunk) => {
+    error.body.on('data', (chunk) => {
       chunks.push(chunk);
     });
-    response.body.on('end', () => {
+    error.body.on('end', () => {
       const result = Buffer.concat(chunks).toString();
       console.log(result, 11111);
     });
