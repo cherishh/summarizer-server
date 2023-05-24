@@ -35,7 +35,7 @@ async function callChatGPTAPI(content) {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer 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`
+        Authorization: `Bearer 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`,
       },
       method: 'POST',
       body: JSON.stringify({
@@ -50,8 +50,8 @@ async function callChatGPTAPI(content) {
             // content: `请帮助我总结下面包裹在'''内的这篇文章的主要内容。
             // '''${content}'''
             // `
-            content: '你好的英文是什么'
-          }
+            content: '你好的英文是什么',
+          },
         ],
         max_tokens: 1000,
         temperature: 1,
@@ -86,7 +86,14 @@ async function callChatGPTAPI(content) {
       throw response;
     }
   } catch (error) {
-    console.log(error.body);
+    const chunks = [];
+    response.body.on('data', (chunk) => {
+      chunks.push(chunk);
+    });
+    response.body.on('end', () => {
+      const result = Buffer.concat(chunks).toString();
+      console.log(result, 11111);
+    });
     console.error('Error calling ChatGPT API:', error);
     throw error;
   }
