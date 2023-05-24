@@ -77,22 +77,18 @@ async function callChatGPTAPI(content) {
       headers: {
         'Authorization': 'Bearer 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'
       },
-      // proxy: {
-      //   protocol: 'http',
-      //   host: '127.0.0.1',
-      //   port: 1087
-      // }
+      proxy: {
+        protocol: 'https',
+        host: '127.0.0.1',
+        port: 1087
+      }
     });
-
-    console.log(response, 11111);
-    console.log(JSON.stringify(response.data), 'data');
 
     if (response.status === 200 && response.data && response.data.choices && response.data.choices.length > 0) {
       console.log(response.data.choices[0].message, 'msg');
       return response.data.choices[0].message.content.trim();
     } else {
-      console.log(response, 22222);
-      throw new Error('No summary generated');
+      throw response;
     }
   } catch (error) {
 
