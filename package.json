@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "export NODE_ENV=dev tsx ./src/server.ts",
-    "build": "./node_modules/.bin/esbuild src/server.ts --bundle --outfile=dist/out.js --platform=node"
+    "build": "node ./build.js"
   },
   "keywords": [],
   "author": "Cherishh",
