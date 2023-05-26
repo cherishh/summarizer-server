@@ -1,5 +1,6 @@
+import { Request as ExpressRequest, Response as ExpressResponse } from 'express';
 import express from 'express';
-import { callChatGPTAPI } from './callChatGPT.js';
+import { callChatGPTAPI } from './callChatGPT';
 
 const app = express();
 const port = 3000;
@@ -8,12 +9,12 @@ app.use(express.json());
 
 const useProxy = process.env.NODE_ENV === 'dev';
 
-app.post('/summarize', async (req, res) => {
+app.post('/summarize', async (req: ExpressRequest, res: ExpressResponse) => {
   const content = req.body.content;
 
   try {
     await callChatGPTAPI(content, res, useProxy);
-  } catch(error) {
+  } catch(error: any) {
     res.status(500).json({ error: 'Failed to generate summary', reason: error.message });
   }
 });

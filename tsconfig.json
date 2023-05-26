@@ -1,0 +1,14 @@
+{
+  "include": ["src"],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "es6",
+    "outDir": "dist",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "alwaysStrict": true,
+    "allowSyntheticDefaultImports":true
+  },
+}
