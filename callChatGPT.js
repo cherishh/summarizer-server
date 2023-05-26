@@ -3,10 +3,10 @@ import { HttpsProxyAgent } from 'https-proxy-agent';
 
 const systemPrompt = {
   role: 'system',
-  content: '你是一个有好且出色的人工智能模型。请尽可能帮助用户，恰当地回复用户提出的问题。',
+  content: '你是一个友好的阅读助手。请尽可能帮助用户，恰当地回复用户提出的问题。',
 };
 
-export async function callChatGPTAPI(content, useProxy, res) {
+export async function callChatGPTAPI(content, res, useProxy) {
   try {
     const agent = useProxy ? new HttpsProxyAgent('http://127.0.0.1:1087') : null;
 
@@ -14,7 +14,7 @@ export async function callChatGPTAPI(content, useProxy, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer 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`,
+        Authorization: `Bearer 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`,
       },
       body: JSON.stringify({
         model: 'gpt-3.5-turbo',
@@ -22,11 +22,11 @@ export async function callChatGPTAPI(content, useProxy, res) {
           systemPrompt,
           {
             role: 'user',
-            // content: `请帮助我总结下面包裹在'''内的这篇文章的主要内容。\n'''${content}'''\n`,
-            content,
+            content: `请帮助我总结下面包裹在'''内的这篇文章的主要内容。\n'''${content}'''\n`,
+            // content,
           },
         ],
-        max_tokens: 2000,
+        max_tokens: 1000,
         temperature: 1,
         stream: true,
       }),
@@ -44,10 +44,12 @@ export async function callChatGPTAPI(content, useProxy, res) {
       }
       res.end();
     } else {
-      throw response;
+      const error = await response.json();
+      console.log(error, 'res');
+      throw new Error(error.error.code);
     }
   } catch (error) {
-    console.error('Error calling ChatGPT API:', JSON.stringify(error));
+    console.error('Error calling ChatGPT API:', error.message);
     throw error;
   }
 }
