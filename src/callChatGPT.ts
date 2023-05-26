@@ -13,7 +13,7 @@ const systemPrompt = {
   content: '你是一个友好的阅读助手。请尽可能帮助用户，恰当地回复用户提出的问题。',
 };
 
-export async function callChatGPTAPI(content: string, res: ExpressResponse, useProxy: boolean) {
+export async function getSummary(content: string, res: ExpressResponse, useProxy: boolean) {
   try {
     const agent: any = useProxy ? new HttpsProxyAgent('http://127.0.0.1:1087') : null;
 
@@ -61,3 +61,6 @@ export async function callChatGPTAPI(content: string, res: ExpressResponse, useP
   }
 }
 
+export async function getChatComplition(content: any[], res: ExpressResponse, useProxy: boolean) {
+
+}
