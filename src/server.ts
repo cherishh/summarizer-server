@@ -1,5 +1,4 @@
-import { Request as ExpressRequest, Response as ExpressResponse } from 'express';
-import express from 'express';
+import express, { Request as ExpressRequest, Response as ExpressResponse } from 'express';
 import { getSummary, getChatComplition } from './callChatGPT';
 import { getMessages } from './utils';
 
