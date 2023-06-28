@@ -3,10 +3,6 @@ import express from 'express';
 import winston from 'winston';
 import { getChatComplition } from './callChatGPT';
 
-interface IArticle {
-  content: string;
-}
-
 const app = express();
 const port = 3000;
 app.use(express.json());
@@ -43,5 +39,6 @@ app.post('/chat', async (req: ExpressRequest, res: ExpressResponse) => {
 });
 
 app.listen(port, () => {
+  // eslint-disable-next-line no-console
   console.log(`Server is running at http://localhost:${port}`);
 });
