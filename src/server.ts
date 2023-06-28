@@ -19,10 +19,12 @@ const logger = winston.createLogger({
   ],
 });
 
+app.get('/', (req, res) => {
+  res.send('hello world!')
+})
 
 app.post('/chat', async (req: ExpressRequest, res: ExpressResponse) => {
-  console.log(req.body, 'req.body');
-  const { content, temperature, key } = req.body;
+  const { content } = req.body;
   try {
     await getChatComplition(req.body, res, logger, isProxy);
   } catch(error: any) {
@@ -34,7 +36,7 @@ app.post('/chat', async (req: ExpressRequest, res: ExpressResponse) => {
       referrer: req.headers['referrer'],
       timestamp: Date.now(),
     });
-    res.status(500).json({ error: '服务器开小差啦，请稍后再试', reason: error.message });
+    res.status(500).json({ message: '服务器开小差啦，请稍后再试', reason: error.message });
   }
 });
 
