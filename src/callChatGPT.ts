@@ -75,6 +75,7 @@ export async function getChatComplition(
     }
   } catch (error: any) {
     console.error('Error calling ChatGPT API:', error.message);
+    
     throw error;
   }
 }
