@@ -35,5 +35,11 @@
     "prettier": "^2.8.8",
     "tsx": "^3.12.7",
     "typescript": "^5.0.4"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx,mjs}": [
+      "npx prettier --write",
+      "npx eslint --fix"
+    ]
   }
 }
