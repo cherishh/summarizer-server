@@ -2,10 +2,10 @@
   "include": ["src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
-    "module": "ESNext",
+    "module": "ESNext", // node项目，需node版本>=13.2.0
     "target": "es6",
     "outDir": "dist",
-    "sourceMap": true,
+    "sourceMap": false, // 对于node项目使用sourceMap没意义
     "moduleResolution": "node",
     "strict": true,
     "alwaysStrict": true,
