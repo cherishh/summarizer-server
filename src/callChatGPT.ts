@@ -46,7 +46,7 @@ export async function getChatComplition(
       body: JSON.stringify({
         model: 'gpt-3.5-turbo-0613',
         messages: [systemPrompt, ...content],
-        max_tokens: 4000,
+        max_tokens: 3000, // 设为4000 openai的返回有时候会有问题，即使很简单的问题也会提示回答超过限制，不知道为什么
         temperature: temperature,
         stream: true,
       }),
