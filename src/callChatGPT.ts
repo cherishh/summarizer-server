@@ -34,17 +34,17 @@ export async function getChatComplition(
 ) {
   try {
     const agent: any = isProxy ? new HttpsProxyAgent('http://127.0.0.1:1087') : null;
-    console.log([systemPrompt, ...content], 'msg');
-    console.log(temperature, 'temperature');
+    // console.log([systemPrompt, ...content], 'msg');
+    // console.log(temperature, 'temperature');
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: key ? `Bearer ${key}` : `Bearer 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`,
+        Authorization: key ? `Bearer ${key}` : `Bearer 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`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo-0613',
+        model: 'gpt-3.5-turbo-16k-0613',
         messages: [systemPrompt, ...content],
         max_tokens: 3000, // 设为4000 openai的返回有时候会有问题，即使很简单的问题也会提示回答超过限制，不知道为什么
         temperature: temperature,
@@ -58,6 +58,7 @@ export async function getChatComplition(
       res.setHeader('Content-Type', 'text/event-stream');
       res.setHeader('Cache-Control', 'no-cache');
       res.setHeader('Connection', 'keep-alive');
+      res.setHeader('Access-Control-Allow-Origin', '*')
       res.flushHeaders();
 
       for await (const chunk of response.body as any) {
